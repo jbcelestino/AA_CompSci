@@ -148,7 +148,7 @@ while 1 != 2:
 
     return_menu = str(input("Would you like to go back to the main menu? (Yes/No) "))
 
-    if return_menu.lower() == "Yes":
+    if return_menu.lower() == "yes":
         continue
     else:
         break
