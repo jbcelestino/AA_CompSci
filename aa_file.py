@@ -148,6 +148,17 @@ while 1 != 2:
 
     return_menu = str(input("Would you like to go back to the main menu? (Yes/No) "))
 
+
+    while checker==0:
+        if return_menu.lower() == "yes":
+            checker+=1
+        elif return_menu.lower() == "no":
+            checker+=1
+        else:
+            print("Invalid input.")
+            print("="*113)
+            return_menu = str(input("Would you like to go back to the main menu? (Yes/No) "))
+
     if return_menu.lower() == "yes":
         continue
     else:
