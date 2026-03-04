@@ -26,21 +26,24 @@ remainder = 0
 allowance_total = 0
 total = 0
 
-
-#Create function to add allowance
+#==========================
+#Function: Add Allowance
+#==========================
 def add_allowance(user_input, allowance_list, index):
     allowance_list.insert(index, user_input)
     print(f"You added {user_input}")
 
-
-#Create function to add expense
+#==========================
+#Function: Add Expense
+#==========================
 def add_expense(cost, item, cost_list, item_list):
     print()
     item_list.insert(index, item)
     cost_list.insert(index, cost)
 
-
-#Create function to view all transactions
+#=======================================
+#Function: View All Transanctions
+#=======================================
 def view_transactions(allowance_list, item_list, date_list_expense, date_list_allowance, cost_list):
     print()
     print("Allowance added: ")
@@ -53,8 +56,9 @@ def view_transactions(allowance_list, item_list, date_list_expense, date_list_al
     print(f"Cost: {cost_list}")
     print()
 
-
-#Create function to check the summary of all transactions
+#=======================================
+#Function: Summary of All Transanctions
+#=======================================
 def add_summary(total, allowance_total, remainder):
     print()
     print(f"Allowance total: {allowance_total}")
