@@ -1,7 +1,8 @@
 {
     "Allowance_added": 0,
     "Expenses_added": 0,
-    "Expenses_list": "x",
+    "Expenses_list": [],
     "Money_left": 0,
-    "Dates": "x"
+    "Dates": []
+
 }
