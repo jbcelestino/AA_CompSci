@@ -90,7 +90,6 @@ while 1 != 2:
     user_input = int(input("Enter your choice: "))
     print()
 
-    #Create if statements checking possibilities
     #If the user inputs "1" as their choice, the program will ask the user how much money do they want to add into their allowance.
     if user_input == 1:
 
@@ -143,16 +142,20 @@ while 1 != 2:
         date_list_expense.insert(index, date)
 
         add_expense(cost, item, cost_list, item_list)
-    
+        
+    #If the user inputs "3" as their choice, then it will print all the transanctions
     elif user_input == 3:
         view_transactions(allowance_list, item_list, date_list_expense, date_list_allowance, cost_list)
-
+        
+    #If the user inputs "4" as their choice, the program will print the summary of all transanctions.
     elif user_input == 4:
         add_summary(total, allowance_total, remainder)
 
+    #If the user inputs "0" as their choice, the program will break/end.
     elif user_input == 0:
         break
 
+    #If the user inputs non of the choices, the program will tell them that their input is invalid, and then ask them if they woulf like to go back to the main menu.
     #Invalid user input    
     else:
         print("Invalid input.")
@@ -161,7 +164,7 @@ while 1 != 2:
 
     return_menu = str(input("Would you like to go back to the main menu? (Yes/No) "))
 
-
+    #Used to validate yes/no
     while checker==0:
         if return_menu.lower() == "yes":
             checker+=1
