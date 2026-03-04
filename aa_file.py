@@ -82,47 +82,56 @@ while 1 != 2:
 
     print("=" * 113)
 
-    #Ask for user input
+    #This asks the user to input their choice
     user_input = int(input("Enter your choice: "))
     print()
 
     #Create if statements checking possibilities
+    #If the user inputs "1" as their choice, the program will ask the user how much money do they want to add into their allowance.
     if user_input == 1:
 
         user_input = float(input("Add allowance (ex. 50 php add): "))
+        #If the user's input is less than or equal to 0, the input will not be recorded and then bring you back to the main menu.
         if user_input == 0 or user_input<0:
             print("Invalid inputs will not be recorded.")
             print()
             continue
 
+        #This will add the inputted amount into the total allowance.
         allowance_total += user_input
 
+        #This tells the date that the allowance added.
         from datetime import date
-
+        
         current_date = date.today()
         date = current_date.strftime("%Y-%m-%d")
         date_list_allowance.insert(index, date)
 
         add_allowance(user_input, allowance_list, index)
 
+    #If the user inputs "2" as their choice, the program will ask the user how much money did they spend.
     elif user_input == 2:
 
         cost = float(input("Money spent: "))
-
+    #If the user's input is equal to 0, the input will not be recorded and then bring you back to the main menu.
         if cost == 0:
             print("An input of 0 will not be recorded.")
             print()
             continue
 
+        #This adds the money you spent to the total money you spent.
         total += cost
 
+        #If the total allowance minus the total money spent is less than 0, the program will tell them that they spent too much.
         if allowance_total - total < 0:
             total -= cost
             print("You spent too much!")
             continue
 
+        #The program asks what the user spent their money on
         item = str(input("What item was the money spent on? "))
 
+        #This tells the date of when the money spent.
         from datetime import date
 
         current_date = date.today()
@@ -130,7 +139,7 @@ while 1 != 2:
         date_list_expense.insert(index, date)
 
         add_expense(cost, item, cost_list, item_list)
-
+    
     elif user_input == 3:
         view_transactions(allowance_list, item_list, date_list_expense, date_list_allowance, cost_list)
 
@@ -140,7 +149,7 @@ while 1 != 2:
     elif user_input == 0:
         break
 
-    #Invalid user input
+    #Invalid user input    
     else:
         print("Invalid input.")
         print()
