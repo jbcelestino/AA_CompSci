@@ -1,0 +1,72 @@
+START
+
+IMPORT json
+IMPORT time
+
+SET filename = "tipidtracker_data.json"
+
+OPEN JSON file
+LOAD data from file
+
+INITIALIZE:
+    allowance = 0
+    expense_list = []
+    total_allowance_added = 0
+    total_expense_added = 0
+
+LOOP forever
+
+    DISPLAY welcome message
+    DISPLAY program description
+
+    DISPLAY MAIN MENU
+        1 Add allowance
+        2 Add expense
+        3 View transactions
+        4 View summary
+        0 Exit
+
+    INPUT user choice
+
+    IF choice == 1 THEN
+        ASK user to input allowance
+        ADD value to total_allowance_added
+        ADD value to allowance
+
+        OPEN JSON file
+        LOAD data
+        UPDATE "Allowance_added"
+        SAVE JSON file
+        DISPLAY confirmation message
+
+    ELSE IF choice == 2 THEN
+        ASK user to input expense
+
+        IF expense > allowance THEN
+            DISPLAY warning message
+        ENDIF
+
+        ADD expense to total_expense_added
+        SUBTRACT expense from allowance
+        APPEND expense to expense_list
+
+        OPEN JSON file
+        LOAD data
+        UPDATE "Expenses_added"
+        UPDATE "Expenses_list"
+        SAVE JSON file
+
+    ENDIF
+
+    ASK user if they want to return to menu
+
+    IF answer = "yes" THEN
+        CONTINUE program
+    ELSE
+        DISPLAY thank you message
+        BREAK loop
+    ENDIF
+
+END LOOP
+
+END
