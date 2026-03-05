@@ -14,23 +14,36 @@
 #8-Camia
 #=========================================================================================
 
-# Initialize variables and lists
+#Import needed libraries
 import json
+import time
 
+#Reading from the file
 filename = 'tipidtracker_data.json'
-
 with open(filename, 'r') as file:
+    #Load the JSON data from the file
     data = json.load(file)
 
+#Initialize all needed variables
 index = 0
 allowance = 0
 date_list = []
-money_left = 0
 expense_list = []
 total_expense_added = 0
 total_allowance_added = 0
+
+#Create a loop that doesn't end until the user wants to end it
 while 1 == 1:
-    print("=" * 50, " MAIN MENU ", "=" * 50)
+    #Message for the user to understand the program
+    print("Hello user!")
+    print("\nWelcome to TipidTracker! this is a Python-based, text-based budget tracker designed to help students"
+            "manage their allowance, expenses, and savings habits. The program makes it easier to"
+            "record daily transactions, track where money is spent, and see summaries over time.")
+    print("\nEnjoy using this program!")
+    time.sleep(2)
+
+    #Create main menu
+    print("\n=" * 50, " MAIN MENU ", "=" * 50)
     print("1. Add allowance")
     print("2. Add expense")
     print("3. View transactions")
@@ -40,45 +53,55 @@ while 1 == 1:
 
     print("=" * 113)
 
-    # This asks the user to input their choice
-    user_input = int(input("Enter your choice: "))
+    #This asks the user to input their choice
+    choice = int(input("\nEnter your choice: "))
     print()
 
-    if user_input == 1:
+    if choice == 1:
+        #Allows the user to input their allowance
+        add_allowance = float(input("Add allowance (ex. 50 php add): "))
 
-        user_input2 = float(input("Add allowance (ex. 50 php add): "))
+        total_allowance_added += add_allowance
+        allowance += add_allowance
 
-        total_allowance_added += user_input2
-        allowance += user_input2
-        money_left += user_input2
-
+        #Editing the JSON file
         with open(filename, 'r') as file:
             data = json.load(file)
-            for x in data:
-                x['Allowance_added'] = total_allowance_added
+            #Put added allowance in the JSON file
+            data["Allowance_added"] += add_allowance
+            print("Thank you! Remember to spend your money wisely.")
 
-            for x in file:
-                print(x)
+    elif choice == 2:
+        #Allows the user to input their expense
+        add_expense = float(input("Add expense: "))
 
-    elif user_input == 2:
-        user_input2 = float(input(""))
+        #Warning the user to not spend too much money
+        if add_expense > allowance:
+            print("Oops! You're spending too much!")
 
-        user_input3 = str(input(""))
+        total_expense_added += add_expense
 
-        if user_input > allowance:
-            print("You are now in debt.")
+        allowance -= add_expense
+        expense_list.append(add_expense)
 
-        total_expense_added += user_input2
-
-        allowance -= user_input
-        expense_list.append(user_input3)
-
+        #Editing the JSON file
         with open(filename, 'r') as file:
             data = json.load(file)
-            for x in data:
-                x['Expenses_added'] = total_expense_added
+            #Put added expense in the JSON file
+            data["Expenses_added"] += add_expense
 
+        #Editing the JSON file
         with open(filename, 'r') as file:
             data = json.load(file)
-            for x in data:
-                x['Expenses_list'] = expense_list
+            #Put data of the variable expense list in the expense list in the JSON file
+            data["Expenses_list"] += expense_list
+
+    #Ask the user if they want to continue the program or not
+    return_menu = str(input("\nWould you like to go back to the main menu? (Yes/No): "))
+
+    if return_menu.lower() == "yes":
+        continue
+    else:
+        #End program
+        print("Thank you for using this program!")
+        break
