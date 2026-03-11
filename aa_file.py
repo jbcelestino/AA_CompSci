@@ -36,8 +36,8 @@ total_allowance_added = 0
  #Message for the user to understand the program
 print("Hello user!")
 print("\nWelcome to TipidTracker! this is a Python-based, text-based budget tracker designed to help students"
-        "manage their allowance, expenses, and savings habits. The program makes it easier to"
-        "record daily transactions, track where money is spent, and see summaries over time.")
+        "\nmanage their allowance, expenses, and savings habits. The program makes it easier to"
+        "\nrecord daily transactions, track where money is spent, and see summaries over time.")
 print("\nEnjoy using this program!")
 time.sleep(2)
 
@@ -45,7 +45,7 @@ time.sleep(2)
 while 1 == 1:
 
     #Create main menu
-    print("\n=" * 50, " MAIN MENU ", "=" * 50)
+    print("=" * 50, " MAIN MENU ", "=" * 50)
     print("1. Add allowance")
     print("2. Add expense")
     print("3. View transactions")
