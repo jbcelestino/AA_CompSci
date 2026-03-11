@@ -1,31 +1,31 @@
-#=========================================================================================
-#TipidTracker: A Simple Budget Manager for Students
+# =========================================================================================
+# TipidTracker: A Simple Budget Manager for Students
 
-#TipidTracker is a Python-based, text-based budget tracker designed to help students
-#manage their allowance, expenses, and savings habits. The program makes it easier to
-#record daily transactions, track where money is spent, and see summaries over time
-#(daily, weekly, monthly, or overall).
+# TipidTracker is a Python-based, text-based budget tracker designed to help students
+# manage their allowance, expenses, and savings habits. The program makes it easier to
+# record daily transactions, track where money is spent, and see summaries over time
+# (daily, weekly, monthly, or overall).
 
-#Created by:
-#Jassie Shekinah B. Celestino
-#Iain Loraine L. Mangawit
-#Zane Xavier M. Sanoy
+# Created by:
+# Jassie Shekinah B. Celestino
+# Iain Loraine L. Mangawit
+# Zane Xavier M. Sanoy
 
-#8-Camia
-#=========================================================================================
+# 8-Camia
+# =========================================================================================
 
-#Import needed libraries
+# Import needed libraries
 import json
 import time
 from datetime import datetime
 
-#Reading from the file
+# Reading from the file
 filename = 'tipidtracker_data.json'
 with open(filename, 'r') as file:
-    #Load the JSON data from the file
+    # Load the JSON data from the file
     data = json.load(file)
 
-#Initialize all needed variables
+# Initialize all needed variables
 index = 0
 allowance = 0
 date_list = []
@@ -33,18 +33,18 @@ expense_list = []
 total_expense_added = 0
 total_allowance_added = 0
 
- #Message for the user to understand the program
+# Message for the user to understand the program
 print("Hello user!")
 print("\nWelcome to TipidTracker! this is a Python-based, text-based budget tracker designed to help students"
-        "\nmanage their allowance, expenses, and savings habits. The program makes it easier to"
-        "\nrecord daily transactions, track where money is spent, and see summaries over time.")
+      "\nmanage their allowance, expenses, and savings habits. The program makes it easier to"
+      "\nrecord daily transactions, track where money is spent, and see summaries over time.")
 print("\nEnjoy using this program!")
 time.sleep(2)
 
-#Create a loop that doesn't end until the user wants to end it
+# Create a loop that doesn't end until the user wants to end it
 while 1 == 1:
 
-    #Create main menu
+    # Create main menu
     print("=" * 50, " MAIN MENU ", "=" * 50)
     print("1. Add allowance")
     print("2. Add expense")
@@ -55,34 +55,34 @@ while 1 == 1:
 
     print("=" * 113)
 
-    #This asks the user to input their choice
+    # This asks the user to input their choice
     choice = int(input("\nEnter your choice: "))
     print()
 
     if choice == 1:
-        #Allows the user to input their allowance
+        # Allows the user to input their allowance
         add_allowance = float(input("Add allowance (ex. 50 php add): "))
 
         total_allowance_added += add_allowance
         allowance += add_allowance
 
-        #Add current date
+        # Add current date
         current_date = datetime.now()
         formatted_date = current_date.strftime("%y:%m:%d")
         date_list.append(formatted_date)
 
-        #Editing the JSON file
+        # Editing the JSON file
         with open(filename, 'r') as file:
             data = json.load(file)
-            #Put added allowance in the JSON file
+            # Put added allowance in the JSON file
             data["Allowance_added"] += add_allowance
             print("Thank you! Remember to spend your money wisely.")
 
     elif choice == 2:
-        #Allows the user to input their expense
+        # Allows the user to input their expense
         add_expense = float(input("Add expense: "))
 
-        #Warning the user to not spend too much money
+        # Warning the user to not spend too much money
         if add_expense > allowance:
             print("Oops! You're spending too much!")
 
@@ -91,8 +91,9 @@ while 1 == 1:
         allowance -= add_expense
         expense_list.append(add_expense)
 
-         #Add category and description (optional)
-        category_choice = input("What category were they spent on? (food, school, leisure, health, transportation, personal care): ")
+        # Add category and description (optional)
+        category_choice = input(
+            "What category were they spent on? (food, school, leisure, health, transportation, personal care): ")
         if category_choice != category:
             print("Please enter a valid category.")
         else:
@@ -104,51 +105,51 @@ while 1 == 1:
         else:
             pass
 
-        #Add current date
+        # Add current date
         current_date = datetime.now()
         formatted_date = current_date.strftime("%y:%m:%d")
         date_list.append(formatted_date)
 
-        #Editing the JSON file
+        # Editing the JSON file
         with open(filename, 'r') as file:
             data = json.load(file)
-            #Put added expense in the JSON file
+            # Put added expense in the JSON file
             data["Expenses_added"] += add_expense
 
-        #Editing the JSON file
+        # Editing the JSON file
         with open(filename, 'r') as file:
             data = json.load(file)
-            #Put data of the variable expense list in the expense list in the JSON file
+            # Put data of the variable expense list in the expense list in the JSON file
             data["Expenses_list"] += expense_list
 
     elif choice == 3:
         # Prints the transanction history of the user.
-    
-            if len(data["Expenses_list"]) == 0:
-                print("No transanction recorded.")
-    
-            else:
-    
-                for i in range(len(data["Expenses_list"])):
-                    print(f"Data: {data["Dates"][i]}")
-                    print(f"Item: {data["Expenses_list"][i]}")
+
+        if len(data["Expenses_list"]) == 0:
+            print("No transanction recorded.")
+
+        else:
+
+            for i in range(len(data["Expenses_list"])):
+                print(f"Data: {data["Dates"][i]}")
+                print(f"Item: {data["Expenses_list"][i]}")
 
     elif choice == 4:
 
         allowance_total = data[("Allowance_added")]
-        total = data["Expenses_Added"]
+        total = data["Expenses_added"]
         remainder = allowance_total - total
 
         print(f"Total Allowance: {data["allowance_total"]}")
         print(f"Total Expenses: {total}")
         print(f"Remaining Balance: {remainder}")
-                                    
-    #Ask the user if they want to continue the program or not
+
+    # Ask the user if they want to continue the program or not
     return_menu = str(input("\nWould you like to go back to the main menu? (Yes/No): "))
 
     if return_menu.lower() == "yes":
         continue
     else:
-        #End program
+        # End program
         print("Thank you for using this program!")
         break
