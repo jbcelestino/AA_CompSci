@@ -64,6 +64,11 @@ while 1 == 1:
         total_allowance_added += add_allowance
         allowance += add_allowance
 
+        #Add current date
+        current_date = datetime.now()
+        formatted_date = current_date.strftime("%y:%m:%d")
+        date_list.append(formatted_date)
+
         #Editing the JSON file
         with open(filename, 'r') as file:
             data = json.load(file)
@@ -83,6 +88,11 @@ while 1 == 1:
 
         allowance -= add_expense
         expense_list.append(add_expense)
+
+        #Add current date
+        current_date = datetime.now()
+        formatted_date = current_date.strftime("%y:%m:%d")
+        date_list.append(formatted_date)
 
         #Editing the JSON file
         with open(filename, 'r') as file:
