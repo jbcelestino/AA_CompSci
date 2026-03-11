@@ -32,15 +32,16 @@ expense_list = []
 total_expense_added = 0
 total_allowance_added = 0
 
+ #Message for the user to understand the program
+print("Hello user!")
+print("\nWelcome to TipidTracker! this is a Python-based, text-based budget tracker designed to help students"
+        "manage their allowance, expenses, and savings habits. The program makes it easier to"
+        "record daily transactions, track where money is spent, and see summaries over time.")
+print("\nEnjoy using this program!")
+time.sleep(2)
+
 #Create a loop that doesn't end until the user wants to end it
 while 1 == 1:
-    #Message for the user to understand the program
-    print("Hello user!")
-    print("\nWelcome to TipidTracker! this is a Python-based, text-based budget tracker designed to help students"
-            "manage their allowance, expenses, and savings habits. The program makes it easier to"
-            "record daily transactions, track where money is spent, and see summaries over time.")
-    print("\nEnjoy using this program!")
-    time.sleep(2)
 
     #Create main menu
     print("\n=" * 50, " MAIN MENU ", "=" * 50)
@@ -88,6 +89,19 @@ while 1 == 1:
 
         allowance -= add_expense
         expense_list.append(add_expense)
+
+         #Add category and description (optional)
+        category_choice = input("What category were they spent on? (food, school, leisure, health, transportation, personal care): ")
+        if category_choice != category:
+            print("Please enter a valid category.")
+        else:
+            category.append(category_choice)
+
+        descrip_choice = input("Would you like to put a description? (Yes/No) ")
+        if descrip_choice.lower() == "yes":
+            description = input("Add description: ")
+        else:
+            pass
 
         #Add current date
         current_date = datetime.now()
