@@ -121,17 +121,17 @@ while 1 == 1:
             #Put data of the variable expense list in the expense list in the JSON file
             data["Expenses_list"] += expense_list
 
-elif choice == 3:
-    # Prints the transanction history of the user.
-
-        if len(data["Expenses_list"]) == 0:
-            print("No transanction recorded.")
-
-        else:
-
-            for i in range(len(data["Expenses_list"])):
-                print(f"Data: {data["Dates"][i]}")
-                print(f"Item: {data["Expenses_list"][i]}")
+    elif choice == 3:
+        # Prints the transanction history of the user.
+    
+            if len(data["Expenses_list"]) == 0:
+                print("No transanction recorded.")
+    
+            else:
+    
+                for i in range(len(data["Expenses_list"])):
+                    print(f"Data: {data["Dates"][i]}")
+                    print(f"Item: {data["Expenses_list"][i]}")
 
     elif choice == 4:
 
@@ -141,7 +141,8 @@ elif choice == 3:
 
         print(f"Total Allowance: {data["allowance_total"]}")
         print(f"Total Expenses: {total}")
-        print(f"Remaining Balance: {remainder
+        print(f"Remaining Balance: {remainder}")
+                                    
     #Ask the user if they want to continue the program or not
     return_menu = str(input("\nWould you like to go back to the main menu? (Yes/No): "))
 
