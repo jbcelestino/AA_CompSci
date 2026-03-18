@@ -63,6 +63,13 @@ while 1 == 1:
         # Allows the user to input their allowance
         add_allowance = float(input("Add allowance (ex. 50 php add): "))
 
+        if add_allowance<0:
+            print("Please enter a valid number.")
+            continue
+        elif type(add_allowance) is not float:
+            print("Please enter a valid number.")
+            continue
+
         total_allowance_added += add_allowance
         allowance += add_allowance
 
@@ -85,6 +92,13 @@ while 1 == 1:
         # Warning the user to not spend too much money
         if add_expense > allowance:
             print("Oops! You're spending too much!")
+
+        if add_expense<0:
+            print("Please enter a valid expense.")
+            continue
+        elif type(add_expense) is not float:
+            print("Please enter a valid expense.")
+            continue
 
         total_expense_added += add_expense
 
