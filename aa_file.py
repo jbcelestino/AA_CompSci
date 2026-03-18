@@ -94,7 +94,7 @@ while 1 == 1:
         # Add category and description (optional)
         category_choice = input(
             "What category were they spent on? (food, school supplies, leisure, health, transportation, personal care): ")
-        if category_choice != category:
+        if category_choice not in category:
             print("Please enter a valid category.")
         else:
             category.append(category_choice)
