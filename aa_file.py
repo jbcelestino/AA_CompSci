@@ -75,7 +75,8 @@ while 1 == 1:
 
         # Add current date
         current_date = datetime.now()
-        formatted_date = current_date.strftime("%y:%m:%d")
+        format_date = current_date.strftime("%y:%m:%d")
+        formatted_date = f"Added_allowance at {format_date}."
         date_list.append(formatted_date)
 
         # Editing the JSON file
@@ -121,7 +122,12 @@ while 1 == 1:
 
         # Add current date
         current_date = datetime.now()
-        formatted_date = current_date.strftime("%y:%m:%d")
+        format_date = current_date.strftime("%y:%m:%d")
+        
+        if descrip_choice.lower() == "yes":
+            formatted_date = f"Added_expense at {format_date} Category: {category_choice} Description: {description}."
+        else:
+            formatted_date = f"Added_expense at {format_date} Category: {category_choice}."
         date_list.append(formatted_date)
 
         # Editing the JSON file
