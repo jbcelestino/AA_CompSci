@@ -26,7 +26,6 @@ with open(filename, 'r') as file:
     data = json.load(file)
 
 # Initialize all needed variables
-index = 0
 allowance = 0
 date_list = []
 expense_list = []
