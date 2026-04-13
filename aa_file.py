@@ -119,15 +119,21 @@ while 1 == 1:
             description = input("Add description: ")
         else:
             pass
-
-        # Add current date
-        current_date = datetime.now()
-        format_date = current_date.strftime("%y:%m:%d")
         
         if descrip_choice.lower() == "yes":
             formatted_date = f"Added_expense at {format_date} Category: {category_choice} Description: {description}."
         else:
             formatted_date = f"Added_expense at {format_date} Category: {category_choice}."
+        date_list.append(formatted_date)
+
+        # Add current date
+        current_date = datetime.now()
+        formatted_date = current_date.strftime("%y:%m:%d")
+        
+        if descrip_choice.lower() == "yes":
+            formatted_date = f"Added_expense at {formatted_date} Category: {category_choice} Description: {description}."
+        else:
+            formatted_date = f"Added_expense at {formatted_date} Category: {category_choice}."
         date_list.append(formatted_date)
 
         # Editing the JSON file
