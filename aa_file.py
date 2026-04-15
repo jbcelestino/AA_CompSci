@@ -31,6 +31,7 @@ date_list = []
 expense_list = []
 total_expense_added = 0
 total_allowance_added = 0
+category = ["food", "school", "leisure", "health", "transportation", "personal care"]
 
 # Message for the user to understand the program
 print("Hello user!")
@@ -106,8 +107,7 @@ while 1 == 1:
         expense_list.append(add_expense)
 
         # Add category and description (optional)
-        category_choice = input(
-            "What category were they spent on? (food, school supplies, leisure, health, transportation, personal care): ")
+        category_choice = input("What category were they spent on? (food, school, leisure, health, transportation, personal care): ")
         if category_choice not in category:
             print("Please enter a valid category.")
         else:
@@ -149,12 +149,13 @@ while 1 == 1:
 
     elif choice == 3:
         # Prints the transanction history of the user.
-
-        if len(data["Expenses_list"]) == 0:
-            print("No transanction recorded.")
+            if data["Dates"] == 0:
+                print("No transaction recorded.")
+            else:
+                for i in date_list:
+                    print(i)
 
         else:
-
             for i in range(len(data["Expenses_list"])):
                 print(f"Data: {data["Dates"][i]}")
                 print(f"Item: {data["Expenses_list"][i]}")
@@ -170,12 +171,10 @@ while 1 == 1:
 
     # Ask the user if they want to continue the program or not
     return_menu = str(input("\nWould you like to go back to the main menu? (Yes/No): "))
+    while return_menu.lower() not in ["no", "yes"]:
+            print("Please enter a valid choice.")
+            return_menu = str(input("\nWould you like to go back to the main menu? (Yes/No): "))
 
-    elif choice == 0:
-        #End program
-        print("Thank you for using this program!")
-        break
-    
     if return_menu.lower() == "yes":
         continue
     else:
