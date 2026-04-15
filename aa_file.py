@@ -160,7 +160,6 @@ while 1 == 1:
                 print(f"Item: {data["Expenses_list"][i]}")
 
     elif choice == 4:
-
         allowance_total = data[("Allowance_added")]
         total = data["Expenses_added"]
         remainder = allowance_total - total
@@ -172,6 +171,11 @@ while 1 == 1:
     # Ask the user if they want to continue the program or not
     return_menu = str(input("\nWould you like to go back to the main menu? (Yes/No): "))
 
+    elif choice == 0:
+        #End program
+        print("Thank you for using this program!")
+        break
+    
     if return_menu.lower() == "yes":
         continue
     else:
