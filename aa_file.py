@@ -152,9 +152,29 @@ while 1 == 1:
             if data["Dates"] == 0:
                 print("No transaction recorded.")
             else:
-                for i in date_list:
-                    print(i)
+                print("Enter 'F' to show full transaction history.")
+                print("Enter 'A' to show allowance history only.")
+                print("Enter 'E' to show expense history only.")
+                time.sleep(2)
 
+                transaction_choice = input("Enter choice: ")
+
+                if transaction_choice.upper() == "F":
+                    for i in date_list:
+                        print(i)
+                        
+                elif transaction_choice.upper() == "A":
+                    for i in data_list["Allowance_added"]:
+                        print(i)
+
+                elif transaction_choice.upper() == "E":
+                    for i in data_list["Expenses_added"]:
+                        print(i)
+
+                else:
+                    print("Please enter a valid input.")
+                    continue
+    
         else:
             for i in range(len(data["Expenses_list"])):
                 print(f"Data: {data["Dates"][i]}")
