@@ -76,13 +76,13 @@ while 1 == 1:
                         print("Please enter a valid number.")
                         add_expense = float(input("Add expense: "))
                     else:
-                        pass
+                        break
                 else:
                     if value < 0:
                         print("Please enter a valid number.")
                         add_expense = float(input("Add expense: "))
                     else:
-                        pass
+                        break
             except ValueError:
                 print("Please enter a valid number.")
                 add_allowance = input("Add allowance (ex. 50.00): ")
@@ -100,7 +100,7 @@ while 1 == 1:
         with open(filename, 'r') as file:
             data = json.load(file)
             # Put added allowance in the JSON file
-            data["Allowance_added"] += add_allowance
+            data["Allowance_added"] += float(add_allowance)
             print("Thank you! Remember to spend your money wisely.")
 
     if choice == 2:
@@ -118,13 +118,13 @@ while 1 == 1:
                     print("Please enter a valid number.")
                     add_expense = float(input("Add expense: "))
                 else:
-                    pass
+                    break
             else:
                 if value < 0:
                     print("Please enter a valid number.")
                     add_expense = input("Add expense: ")
                 else:
-                    pass
+                    break
         except ValueError:
             print("Please enter a valid number.")
             add_expense = float(input("Add expense: "))
@@ -166,7 +166,7 @@ while 1 == 1:
         with open(filename, 'r') as file:
             data = json.load(file)
             # Put added expense in the JSON file
-            data["Expenses_added"] += add_expense
+            data["Expenses_added"] += float(add_expense)
 
         # Editing the JSON file
         with open(filename, 'r') as file:
