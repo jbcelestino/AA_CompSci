@@ -74,13 +74,13 @@ while 1 == 1:
                 if value.is_integer():
                     if value < 0:
                         print("Please enter a valid number.")
-                        add_allowance = float(input("Add expense: "))
+                        add_allowance = float(input("Add allowance: "))
                     else:
                         break
                 else:
                     if value < 0:
                         print("Please enter a valid number.")
-                        add_allowance = float(input("Add expense: "))
+                        add_allowance = float(input("Add allowance: "))
                     else:
                         break
             except ValueError:
