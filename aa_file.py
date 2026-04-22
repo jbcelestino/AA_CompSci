@@ -56,22 +56,39 @@ while 1 == 1:
     print("=" * 113)
 
     # This asks the user to input their choice
-    choice = int(input("\nEnter your choice: "))
-    print()
+    while True:
+        try:
+            choice = int(input("\nEnter your choice: "))
+            print()
+            break
+        except ValueError:
+            print("Please enter a valid number.")
 
     if choice == 1:
         # Allows the user to input their allowance
-        add_allowance = float(input("Add allowance (ex. 50 php add): "))
+        add_allowance = input("Add allowance (ex. 50.00): ")
 
-        if add_allowance<0:
-            print("Please enter a valid number.")
-            continue
-        elif type(add_allowance) is not float:
-            print("Please enter a valid number.")
-            continue
+        while True:
+            try:
+                value = float(add_allowance)
+                if value.is_integer():
+                    if value < 0:
+                        print("Please enter a valid number.")
+                        add_expense = float(input("Add expense: "))
+                    else:
+                        pass
+                else:
+                    if value < 0:
+                        print("Please enter a valid number.")
+                        add_expense = float(input("Add expense: "))
+                    else:
+                        pass
+            except ValueError:
+                print("Please enter a valid number.")
+                add_allowance = input("Add allowance (ex. 50.00): ")
 
-        total_allowance_added += add_allowance
-        allowance += add_allowance
+        total_allowance_added += float(add_allowance)
+        allowance += float(add_allowance)
 
         # Add current date
         current_date = datetime.now()
@@ -86,24 +103,34 @@ while 1 == 1:
             data["Allowance_added"] += add_allowance
             print("Thank you! Remember to spend your money wisely.")
 
-    elif choice == 2:
+    if choice == 2:
         # Allows the user to input their expense
-        add_expense = float(input("Add expense: "))
+        add_expense = input("Add expense: ")
 
         # Warning the user to not spend too much money
         if add_expense > allowance:
             print("Oops! You're spending too much!")
 
-        if add_expense<0:
-            print("Please enter a valid expense.")
-            continue
-        elif type(add_expense) is not float:
-            print("Please enter a valid expense.")
-            continue
+        try:
+            value = float(add_expense)
+            if value.is_integer():
+                if value < 0:
+                    print("Please enter a valid number.")
+                    add_expense = float(input("Add expense: "))
+                else:
+                    pass
+            else:
+                if value < 0:
+                    print("Please enter a valid number.")
+                    add_expense = input("Add expense: ")
+                else:
+                    pass
+        except ValueError:
+            print("Please enter a valid number.")
+            add_expense = float(input("Add expense: "))
 
-        total_expense_added += add_expense
-
-        allowance -= add_expense
+       total_expense_added += float(add_expense)
+        allowance -= float(add_expense)
         expense_list.append(add_expense)
 
         # Add category and description (optional)
@@ -118,7 +145,7 @@ while 1 == 1:
             description = input("Add description: ")
         else:
             pass
-        
+
         if descrip_choice.lower() == "yes":
             formatted_date = f"Added_expense at {format_date} Category: {category_choice} Description: {description}."
         else:
@@ -147,17 +174,22 @@ while 1 == 1:
             # Put data of the variable expense list in the expense list in the JSON file
             data["Expenses_list"] += expense_list
 
-    elif choice == 3:
-        # Prints the transanction history of the user.
+    if choice == 3:
+        # Prints the transaction history of the user.
             if data["Dates"] == 0:
                 print("No transaction recorded.")
             else:
+                print("Please enter a valid choice.")
                 print("Enter 'F' to show full transaction history.")
                 print("Enter 'A' to show allowance history only.")
                 print("Enter 'E' to show expense history only.")
                 time.sleep(2)
 
                 transaction_choice = input("Enter choice: ")
+
+                while return_menu.lower() not in ["f", "a", "e"]:
+                    print("Please enter a valid choice.")
+                    transaction_choice = input("Enter choice: ")
 
                 if transaction_choice.lower() == "f":
                     for i in date_list:
@@ -166,18 +198,12 @@ while 1 == 1:
                     for i in date_list:
                         if "Added allowance" in i:
                             print(i)
-                            
                 elif transaction_choice.lower() == "e":
                     for i in date_list:
                         if "Added expense" in i:
                             print(i)
-    
-        else:
-            for i in range(len(data["Expenses_list"])):
-                print(f"Data: {data["Dates"][i]}")
-                print(f"Item: {data["Expenses_list"][i]}")
 
-    elif choice == 4:
+    if choice == 4:
         allowance_total = data[("Allowance_added")]
         total = data["Expenses_added"]
         remainder = allowance_total - total
@@ -189,8 +215,8 @@ while 1 == 1:
     # Ask the user if they want to continue the program or not
     return_menu = str(input("\nWould you like to go back to the main menu? (Yes/No): "))
     while return_menu.lower() not in ["no", "yes"]:
-            print("Please enter a valid choice.")
-            return_menu = str(input("\nWould you like to go back to the main menu? (Yes/No): "))
+        print("Please enter a valid choice.")
+        return_menu = str(input("\nWould you like to go back to the main menu? (Yes/No): "))
 
     if return_menu.lower() == "yes":
         continue
@@ -198,3 +224,4 @@ while 1 == 1:
         # End program
         print("Thank you for using this program!")
         break
+
