@@ -187,7 +187,7 @@ while 1 == 1:
 
                 transaction_choice = input("Enter choice: ")
 
-                while return_menu.lower() not in ["f", "a", "e"]:
+                while transaction_choice.lower() not in ["f", "a", "e"]:
                     print("Please enter a valid choice.")
                     transaction_choice = input("Enter choice: ")
 
