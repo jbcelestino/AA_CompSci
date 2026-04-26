@@ -111,23 +111,24 @@ while 1 == 1:
         if add_expense > allowance:
             print("Oops! You're spending too much!")
 
-        try:
-            value = float(add_expense)
-            if value.is_integer():
-                if value < 0:
-                    print("Please enter a valid number.")
-                    add_expense = float(input("Add expense: "))
+        while True:
+            try:
+                value = float(add_expense)
+                if value.is_integer():
+                    if value < 0:
+                        print("Please enter a valid number.")
+                        add_expense = float(input("Add expense: "))
+                    else:
+                        break
                 else:
-                    break
-            else:
-                if value < 0:
-                    print("Please enter a valid number.")
-                    add_expense = input("Add expense: ")
-                else:
-                    break
-        except ValueError:
-            print("Please enter a valid number.")
-            add_expense = float(input("Add expense: "))
+                    if value < 0:
+                        print("Please enter a valid number.")
+                        add_expense = input("Add expense: ")
+                    else:
+                        break
+            except ValueError:
+                print("Please enter a valid number.")
+                add_expense = input("Add expense: ")
 
        total_expense_added += float(add_expense)
         allowance -= float(add_expense)
@@ -147,9 +148,9 @@ while 1 == 1:
             pass
 
         if descrip_choice.lower() == "yes":
-            formatted_date = f"Added_expense at {format_date} Category: {category_choice} Description: {description}."
+            formatted_date = f"Added expense at {format_date} Category: {category_choice} Description: {description}."
         else:
-            formatted_date = f"Added_expense at {format_date} Category: {category_choice}."
+            formatted_date = f"Added expense at {format_date} Category: {category_choice}."
         date_list.append(formatted_date)
 
         # Add current date
@@ -157,9 +158,9 @@ while 1 == 1:
         formatted_date = current_date.strftime("%y:%m:%d")
         
         if descrip_choice.lower() == "yes":
-            formatted_date = f"Added_expense at {formatted_date} Category: {category_choice} Description: {description}."
+            formatted_date = f"Added expense at {formatted_date} Category: {category_choice} Description: {description}."
         else:
-            formatted_date = f"Added_expense at {formatted_date} Category: {category_choice}."
+            formatted_date = f"Added expense at {formatted_date} Category: {category_choice}."
         date_list.append(formatted_date)
 
         # Editing the JSON file
