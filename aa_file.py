@@ -213,6 +213,9 @@ while 1 == 1:
         print(f"Total Expenses: {total}")
         print(f"Remaining Balance: {remainder}")
 
+    if choice== 0:
+        break
+
     # Ask the user if they want to continue the program or not
     return_menu = str(input("\nWould you like to go back to the main menu? (Yes/No): "))
     while return_menu.lower() not in ["no", "yes"]:
